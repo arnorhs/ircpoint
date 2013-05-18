@@ -14,7 +14,7 @@ sock.on('connection', function(conn) {
     });
 
     client.addListener('raw', function(message) {
-        conn.write(message);
+        conn.write(JSON.stringify(message));
     });
 
     conn.on('data', function(message) {

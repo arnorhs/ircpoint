@@ -1,11 +1,8 @@
-### Not currently working
+### IRC Point
 
-### Wat
+The goal is to create a IRC over web socket connection layer, that you can build IRC
+clients on top of.
 
-Will be a persistent IRC client kind of a thing, which adds extra features on top of IRC
-
-- You don't have to be online all the time, you just log in to the client
-- Extra features added on top of IRC which are available to users of the client, but maybe and maybe not to IRC users
-- Probably using shoe or some kind of a websockets thing for the client-server stuff
-
+Right now it's relatively pseaudocode-ish. Making connections via socksjs kind of works,
+but is not useful and just always connects to a fixed client etc.
 
