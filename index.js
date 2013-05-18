@@ -1,22 +1,28 @@
-var IrcClient = require('irc').Client;
+var http = require('http'),
+    sockjs = require('sockjs'),
+    IrcClient = require('irc').Client;
 
-var nick = 'arnorhs__';
-var client = new IrcClient('irc.freenode.org', nick, {
-    channels: ["#javascript"]
+// Websocket connection for clients to connect to
+var sock = sockjs.createServer();
+sock.on('connection', function(conn) {
+
+    // Irc client to connect to a server
+    var nick = 'ircpoint';
+    // It would be nice if it didn't connect right away.. maybe there's an option for that
+    var client = new IrcClient('irc.freenode.org', nick, {
+        channels: ["#javascript"]
+    });
+
+    client.addListener('raw', function(message) {
+        conn.write(message);
+    });
+
+    conn.on('data', function(message) {
+        console.log("message response:", message);
+    });
+    conn.on('close', function() {});
 });
 
-client.addListener('registered', function (message) {
-    console.log(message.args);
-});
-client.addListener('motd', function (motd) {
-    console.log(motd);
-});
-client.addListener('message', function (from, to, message) {
-    console.log(from, to, message);
-    if (to === nick) {
-        client.say(from, "Hey " + from + ", what's up in the hood?");
-    }
-});
-client.addListener('error', function(error) {
-    console.log(error);
-});
+var server = http.createServer();
+sock.installHandlers(server, {prefix:'/connection'});
+server.listen(1337, '0.0.0.0');

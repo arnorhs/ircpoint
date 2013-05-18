@@ -1,13 +1,14 @@
 {
-	"name": "ircpoint",
-	"version": "0.0.1",
-	"author": "Arnor Heidar Sigurdsson <arnorhs@gmail.com>",
-	"description": "An IRC mommy client",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/arnorhs/ircpoint.git"
-	},
-	"dependencies" : {
-		"irc": "0.3.x"
-    }
+  "name": "ircpoint",
+  "version": "0.0.1",
+  "author": "Arnor Heidar Sigurdsson <arnorhs@gmail.com>",
+  "description": "An IRC mommy client",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arnorhs/ircpoint.git"
+  },
+  "dependencies" : {
+    "irc": "0.3.x",
+    "sockjs": "0.3.x"
+  }
 }
